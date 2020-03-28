@@ -232,6 +232,10 @@ function deleteClanMember($role_id, $member_id, $db)
         echo "You don't have enought rights for that! </br>";
         return;
     }
+    if (!isSoldier($member_id)){
+        echo "You can only remove soldiers! </br>";
+        return;
+    }
     $db->query("UPDATE users
 SET clans_id = null, roles_id = null
 WHERE id = '{$member_id}';");
